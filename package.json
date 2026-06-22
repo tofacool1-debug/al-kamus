@@ -41,12 +41,9 @@
     "vite": "^6.2.3"
   },
   "expo": {
-      "doctor": {
-      "reactNativeDirectoryCheck": {
-        "enabled": true,
-        "exclude": ["/foo/", "bar"],
-        "listUnknownPackages": true
-      }
+      "install": {
+      "exclude": ["expo-updates", "expo-splash-screen"]
+    }
     }
   }
 }
