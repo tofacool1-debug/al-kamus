@@ -41,10 +41,12 @@
     "vite": "^6.2.3"
   },
   "expo": {
-    "install": {
-      "exclude": [
-        "typescript"
-      ]
+      "doctor": {
+      "reactNativeDirectoryCheck": {
+        "enabled": true,
+        "exclude": ["/foo/", "bar"],
+        "listUnknownPackages": true
+      }
     }
   }
 }
