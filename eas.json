@@ -4,39 +4,15 @@
     "requireCommit": false
   },
   "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal",
-      "android": {
-        "buildType": "debug"
-      },
-      "ios": {
-        "simulator": true
-      },
-      "channel": "development"
-    },
     "preview": {
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
       },
-      "ios": {
-        "simulator": true
-      },
-      "channel": "preview"
-    },
-    "production": {
-      "android": {
-        "buildType": "aab"
-      },
-      "ios": {
-        "buildConfiguration": "Release"
-      },
-      "channel": "production"
+      "channel": "preview",
+      "autoIncrement": true
     }
-  },
-  "submit": {
-    "production": {}
   },
   "update": {
     "url": "https://u.expo.dev/be0b9135-23a5-4baf-996c-d56afb9c8660",
