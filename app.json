@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Shorof premium",
-    "slug": "shorof-premium",
+    "slug": "shorof-offline",
     "scheme": "shorof",
     "version": "1.0.0",
     "orientation": "portrait",
