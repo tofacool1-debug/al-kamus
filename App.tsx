@@ -1,12 +1,49 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import * as SplashScreen from 'expo-splash-screen';
+import * as FileSystem from 'expo-file-system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Biar splash gak auto hide sebelum DB siap
 SplashScreen.preventAutoHideAsync();
 
-const db = SQLite.openDatabaseSync('shorof.db');
+const DB_NAME = 'shorof.sqlite';
+const DB_PATH = `${FileSystem.documentDirectory}SQLite/${DB_NAME}`;
+// GANTI LINK INI KE SERVER LU
+const VERSION_URL = 'https://raw.githubusercontent.com/username/repo/main/version.json';
+
+let db: SQLite.SQLiteDatabase;
+
+const initDB = async () => {
+  try {
+    // 1. Ambil versi DB dari server
+    const res = await fetch(VERSION_URL);
+    const { version, url } = await res.json();
+    
+    // 2. Cek versi lokal
+    const localVersion = await AsyncStorage.getItem('db_version');
+    
+    // 3. Kalau beda versi atau DB belum ada → download
+    const fileInfo = await FileSystem.getInfoAsync(DB_PATH);
+    if (!fileInfo.exists || localVersion !== String(version)) {
+      await FileSystem.makeDirectoryAsync(`${FileSystem.documentDirectory}SQLite`, { intermediates: true });
+      
+      Alert.alert('Update Database', 'Downloading data kamus terbaru...');
+      await FileSystem.downloadAsync(url, DB_PATH);
+      
+      await AsyncStorage.setItem('db_version', String(version));
+      console.log('DB update ke versi', version);
+    }
+    
+    // 4. Buka DB yg udah didownload
+    db = await SQLite.openDatabaseAsync(DB_NAME);
+    return true;
+  } catch (e) {
+    console.error('Gagal init DB:', e);
+    Alert.alert('Error', 'Gagal load database. Cek internet + link version.json');
+    return false;
+  }
+}
 
 export default function App() {
   const [fa, setFa] = useState('ن');
@@ -15,49 +52,25 @@ export default function App() {
   const [hasil, setHasil] = useState<any>(null);
   const [appReady, setAppReady] = useState(false);
 
-  // 1. Init DB + hide splash pas udah siap
   useEffect(() => {
     async function prepare() {
-      try {
-        db.execSync(`
-          CREATE TABLE IF NOT EXISTS bab1 (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            fa TEXT, ain TEXT, lam TEXT,
-            madhi TEXT, mudhari TEXT, mashdar TEXT, makna TEXT
-          );
-        `);
-
-        const count = db.getFirstSync('SELECT COUNT(*) as c FROM bab1');
-        if (count.c === 0) {
-          db.execSync(`
-            INSERT INTO bab1 (fa, ain, lam, madhi, mudhari, mashdar, makna) VALUES
-            ('ن','ص','ر','نَصَرَ','يَنْصُرُ','نَصْرًا','menolong'),
-            ('ك','ت','ب','كَتَبَ','يَكْتُبُ','كِتَابَةً','menulis'),
-            ('ف','ت','ح','فَتَحَ','يَفْتَحُ','فَتْحًا','membuka'),
-            ('د','ر','س','دَرَسَ','يَدْرُسُ','دَرْسًا','belajar');
-          `);
-        }
-        
+      const success = await initDB(); // Ganti bagian CREATE TABLE jadi ini
+      if (success) {
         cariData();
-      } catch (e) {
-        console.warn(e);
-      } finally {
-        setAppReady(true);
-        await SplashScreen.hideAsync(); // Baru hide splash
       }
+      setAppReady(true);
+      await SplashScreen.hideAsync();
     }
     prepare();
   }, []);
 
-  // 2. Fungsi cari DB offline
-  const cariData = useCallback(() => {
-    if (!appReady) return;
+  const cariData = useCallback(async () => {
+    if (!appReady || !db) return;
     const sql = 'SELECT * FROM bab1 WHERE fa = ? AND ain = ? AND lam = ? LIMIT 1';
-    const row = db.getFirstSync(sql, [fa, ain, lam]);
+    const row = await db.getFirstAsync(sql, [fa, ain, lam]);
     setHasil(row);
   }, [fa, ain, lam, appReady]);
 
-  // 3. Tasrif Madhi Bab 1 فَعَلَ يَفْعُلُ
   const tasrif = (f: string, a: string, l: string) => [
     `هُوَ ${f}َ${a}َ${l}َ`,
     `هُمَا ${f}َ${a}َ${l}َا`,
@@ -73,7 +86,7 @@ export default function App() {
     `نَحْنُ ${f}َ${a}َ${l}ْنَا`
   ];
 
-  if (!appReady) return null; // Tahan di splash sampe DB siap
+  if (!appReady) return null;
 
   return (
     <ScrollView style={styles.container}>
