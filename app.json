@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Shorof Bab1",
-    "slug": "shorof",
+    "name": "Shorof offline",
+    "slug": "shorof offline",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,14 +14,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.lu.shorofbab1"
+      "bundleIdentifier": "com.lu.shorofoffline"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#2563eb"
       },
-      "package": "com.lu.shorofbab1",
+      "package": "com.lu.shorofoffline",
       "permissions": []
     },
     "web": {
