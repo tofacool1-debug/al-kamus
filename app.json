@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Shorof offline",
-    "slug": "shorof-offline",
+    "name": "Shorof premium",
+    "slug": "shorof-premium",
     "scheme": "shorof",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -15,14 +15,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shorofoffline"
+      "bundleIdentifier": "com.shorofpremium"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#2563eb"
       },
-      "package": "com.shorofoffline",
+      "package": "com.shorofpremium",
       "permissions": []
     },
     "web": {
