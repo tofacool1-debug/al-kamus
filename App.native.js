@@ -1,121 +1,87 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, StatusBar, Alert, BackHandler } from 'react-native';
-import { WebView } from 'react-native-webview';
-import * as Updates from 'expo-updates';
+import { View, Text, TextInput, StyleSheet, ScrollView } from 'react-native';
+import * as SQLite from 'expo-sqlite';
+
+const db = SQLite.openDatabase('shorof_bab1.db');
 
 export default function App() {
-  const [initialLoading, setInitialLoading] = useState(true);
-  const [updateStatus, setUpdateStatus] = useState('Checking for updates...');
-  const [canGoBack, setCanGoBack] = useState(false);
-  const appUrl = 'https://shorof-digital.vercel.app'; // PWA URL
-  let webViewRef = null;
+  const [fa, setFa] = useState('ن');
+  const [ain, setAin] = useState('ص');
+  const [lam, setLam] = useState('ر');
+  const [data, setData] = useState(null);
 
-  // Handle Android Native Back Button to navigate inside the Shorof Digital Pro history
+  // 1. Bikin tabel + seed data ن-ص-ر pas pertama buka
   useEffect(() => {
-    const onBackPress = () => {
-      if (canGoBack && webViewRef) {
-        webViewRef.goBack();
-        return true; // prevents exiting the app
-      }
-      return false; // use default system exit
-    };
-    BackHandler.addEventListener('hardwareBackPress', onBackPress);
-    return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-  }, [canGoBack]);
-
-  // Handle EAS Updates checking automatically on startup
-  useEffect(() => {
-    async function checkAndApplyUpdates() {
-      if (__DEV__) {
-        setInitialLoading(false);
-        return;
-      }
-      try {
-        setUpdateStatus('Memeriksa pembaruan otomatis...');
-        const updateCheck = await Updates.checkForUpdateAsync();
-        if (updateCheck.isAvailable) {
-          setUpdateStatus('Mengunduh versi lafadz terbaru...');
-          await Updates.fetchUpdateAsync();
-          setUpdateStatus('Memasang pembaruan...');
-          Alert.alert(
-            'Pembaruan Diunduh',
-            'Sistem selesai mengunduh data versi terbaru. Izinkan kami menyelaraskan sejenak untuk memperbarui database lafadz.',
-            [{ text: 'Lanjutkan', onPress: async () => await Updates.reloadAsync() }]
-          );
-        } else {
-          setInitialLoading(false);
-        }
-      } catch (error) {
-        console.log('Error update checking:', error);
-        setInitialLoading(false); // Graceful fallback
-      }
-    }
-    checkAndApplyUpdates();
+    db.transaction(tx => {
+      tx.executeSql(`DROP TABLE IF EXISTS bab1`);
+      tx.executeSql(
+        `CREATE TABLE bab1 (
+          fa TEXT, ain TEXT, lam TEXT,
+          madhi TEXT, mudhari TEXT, mashdar TEXT
+        );`
+      );
+      // Contoh نَصَرَ - Bab 1: فَعَلَ يَفْعُلُ
+      tx.executeSql(
+        `INSERT INTO bab1 VALUES ('ن','ص','ر','نَصَرَ','يَنْصُرُ','نَصْرًا')`
+      );
+    }, null, () => loadData());
   }, []);
 
-  if (initialLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-        <ActivityIndicator size="large" color="#059669" />
-        <Text style={styles.loadingText}>Shorof Digital Pro</Text>
-        <Text style={styles.subText}>{updateStatus}</Text>
-      </View>
-    );
-  }
+  // 2. Ambil data dari DB offline
+  const loadData = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `SELECT * FROM bab1 WHERE fa=? AND ain=? AND lam=?`,
+        [fa, ain, lam],
+        (_, { rows }) => setData(rows._array[0] || null)
+      );
+    });
+  };
+
+  // 3. Generate tasrif madhi sederhana Bab 1
+  const tasrifMadhi = (fa, ain, lam) => {
+    return [
+      `هُوَ ${fa}َ${ain}َ${lam}َ`, // نَصَرَ
+      `هُمَا ${fa}َ${ain}َ${lam}َا`, // نَصَرَا
+      `هُمْ ${fa}َ${ain}َ${lam}ُوا`, // نَصَرُوا
+      `هِيَ ${fa}َ${ain}َ${lam}َتْ`, // نَصَرَتْ
+      `هُمَا ${fa}َ${ain}َ${lam}َتَا`, // نَصَرَتَا
+      `هُنَّ ${fa}َ${ain}َ${lam}ْنَ`, // نَصَرْنَ
+      `أَنْتَ ${fa}َ${ain}َ${lam}ْتَ`, // نَصَرْتَ
+      `أَنْتُمَا ${fa}َ${ain}َ${lam}ْتُمَا`,
+      `أَنْتُمْ ${fa}َ${ain}َ${lam}ْتُمْ`,
+      `أَنْتِ ${fa}َ${ain}َ${lam}ْتِ`,
+      `أَنْتُمَا ${fa}َ${ain}َ${lam}ْتُمَا`,
+      `أَنْتُنَّ ${fa}َ${ain}َ${lam}ْتُنَّ`,
+      `أَنَا ${fa}َ${ain}َ${lam}ْتُ`, // نَصَرْتُ
+      `نَحْنُ ${fa}َ${ain}َ${lam}ْنَا` // نَصَرْنَا
+    ];
+  };
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
-      <WebView
-        ref={(ref) => (webViewRef = ref)}
-        source={{ uri: appUrl }}
-        style={styles.webView}
-        startInLoadingState={true}
-        onNavigationStateChange={(navState) => {
-          setCanGoBack(navState.canGoBack);
-        }}
-        renderLoading={() => (
-          <View style={styles.webviewLoader}>
-            <ActivityIndicator size="small" color="#059669" />
-          </View>
-        )}
-      />
-    </View>
-  );
-}
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>Shorof Bab 1 - فَعَلَ يَفْعُلُ</Text>
+      <Text style={styles.subtitle}>Contoh: نَصَرَ يَنْصُرُ نَصْرًا</Text>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-  },
-  webView: {
-    flex: 1,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-    padding: 24,
-  },
-  loadingText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#0f172a',
-    marginTop: 16,
-  },
-  subText: {
-    fontSize: 12,
-    color: '#64748b',
-    marginTop: 4,
-    textAlign: 'center',
-  },
-  webviewLoader: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffffff',
-  },
-});
+      <View style={styles.row}>
+        <TextInput style={styles.input} value={fa} onChangeText={setFa} maxLength={1} placeholder="ف" />
+        <TextInput style={styles.input} value={ain} onChangeText={setAin} maxLength={1} placeholder="ع" />
+        <TextInput style={styles.input} value={lam} onChangeText={setLam} maxLength={1} placeholder="ل" />
+      </View>
+
+      <Text style={styles.btn} onPress={loadData}>Tampilkan</Text>
+
+      {data? (
+        <View style={styles.card}>
+          <Text style={styles.arabic}>الماضي: {data.madhi}</Text>
+          <Text style={styles.arabic}>المضارع: {data.mudhari}</Text>
+          <Text style={styles.arabic}>المصدر: {data.mashdar}</Text>
+
+          <Text style={styles.section}>تصريف الماضي:</Text>
+          {tasrifMadhi(fa, ain, lam).map((t, i) => (
+            <Text key={i} style={styles.arabicSmall}>{t}</Text>
+          ))}
+        </View>
+      ) : (
+        <Text style={styles.empty}>Data tidak ditemukan. Coba ن ص ر</Text>
+      )}
