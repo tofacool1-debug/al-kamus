@@ -12,7 +12,15 @@
       },
       "channel": "preview",
       "autoIncrement": true
+    },
+    "production": {
+      "android": {
+        "buildType": "apk"
+      }
     }
+  },
+  "submit": {
+    "production": {}
   },
   "update": {
     "url": "https://u.expo.dev/be0b9135-23a5-4baf-996c-d56afb9c8660",
