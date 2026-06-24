@@ -1,3 +1,3 @@
 import { registerRootComponent } from 'expo';
-import App from './app.native';
+import App from './app.tsx';
 registerRootComponent(App);
