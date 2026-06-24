@@ -43,12 +43,12 @@
       "enabled": true,
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/xxx-xxx-xxx-xxx"
+      "url": "https://u.expo.dev/be0b9135-23a5-4baf-996c-d56afb9c8660"
     },
     "runtimeVersion": "1.0.0",
     "extra": {
       "eas": {
-        "projectId": "xxx-xxx-xxx-xxx"
+        "projectId": "be0b9135-23a5-4baf-996c-d56afb9c8660"
       }
     }
   }
