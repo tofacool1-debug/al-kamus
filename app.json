@@ -1,49 +1,54 @@
 {
   "expo": {
-    "name": "Shorof Digital Pro",
-    "slug": "shorof-digital",
+    "name": "Shorof Bab1",
+    "slug": "shorof-bab1",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "plugins": [
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/splash.png",
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
-        }
-      ]
-    ],
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2563eb"
+    },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.shorof.digital"
+      "bundleIdentifier": "com.lu.shorofbab1"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#2563eb"
       },
-      "package": "com.shorof.digital"
+      "package": "com.lu.shorofbab1",
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      "expo-sqlite",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#2563eb"
+        }
+      ]
+    ],
     "updates": {
-      "url": "https://u.expo.dev/de3329e9-ed7a-4005-abfa-7bda2599b5d4",
-      "fallbackToCacheTimeout": 5000,
-      "enabled": true
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/xxx-xxx-xxx-xxx"
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "extra": {
       "eas": {
-        "projectId": "de3329e9-ed7a-4005-abfa-7bda2599b5d4"
+        "projectId": "xxx-xxx-xxx-xxx"
       }
     }
   }
