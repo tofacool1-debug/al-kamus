@@ -37,7 +37,7 @@
       "reactCompiler": true
     },
     "updates": {
-      "url": "https://u.expo.dev/de3329e9-ed7a-4005-abfa-7bda2599b5d4",
+      "url": "https://u.expo.dev/be0b9135-23a5-4baf-996c-d56afb9c8660",
       "enabled": true,
       "checkAutomatically": "ON_LOAD",
       "fallbackToCacheTimeout": 0
@@ -47,7 +47,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "de3329e9-ed7a-4005-abfa-7bda2599b5d4"
+        "projectId": "be0b9135-23a5-4baf-996c-d56afb9c8660"
       }
   }
 }
