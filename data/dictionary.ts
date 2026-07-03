@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { DictionaryEntry, DataWazan } from "../types";
 
 export const PRESET_DICTIONARY: DictionaryEntry[] = [
