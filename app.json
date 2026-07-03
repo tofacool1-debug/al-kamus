@@ -2,7 +2,7 @@
   "expo": {
     "name": "Shorof Digital Pro",
     "slug": "mobile",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "mobile",
@@ -11,13 +11,13 @@
     "splash": {
       "image": "./assets/images/icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#020617"
+      "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": false
     },
     "android": {
-      "backgroundColor": "#020617"
+      "backgroundColor": "#ffffff"
     },
     "web": {
       "favicon": "./assets/images/icon.png"
@@ -35,6 +35,19 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/de3329e9-ed7a-4005-abfa-7bda2599b5d4",
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "de3329e9-ed7a-4005-abfa-7bda2599b5d4"
+      }
   }
 }
