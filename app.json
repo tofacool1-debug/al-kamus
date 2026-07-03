@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Shorof Digital Pro",
-    "slug": "mobile",
+    "slug": "shorof-digital",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile",
+    "scheme": "shorof-digital",
     "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "splash": {
@@ -14,9 +14,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.shorof.digital" 
     },
     "android": {
+      "package": "com.shorof.digital",
       "backgroundColor": "#ffffff"
     },
     "web": {
