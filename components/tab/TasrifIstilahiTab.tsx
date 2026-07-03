@@ -18,6 +18,7 @@ const ROWS: { key: keyof TasrifIstilahiData; label: string; arLabel: string; acc
   { key: "amr",           label: "Fi'il Amr",          arLabel: "فِعْلُ الأَمْر",       accent: "#fb923c" },
   { key: "nahi",          label: "Fi'il Nahi",         arLabel: "فِعْلُ النَّهْي",      accent: "#f43f5e" },
   { key: "isimZamanMakan",label: "Isim Zaman/Makan",   arLabel: "اِسْمُ الزَّمَان/المَكَان", accent: "#94a3b8" },
+  { key: "isimAlat",      label: "Isim Alat",          arLabel: "اِسْمُ الالة",       accent: "#f472b6" },
 ];
 
 export default function TasrifIstilahiTab({ entry, tc }: Props) {
