@@ -1,0 +1,33 @@
+{
+  "cli": {
+    "version": ">=16.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "autoIncrement": true,
+      "channel": "production",
+      "distribution": "internal",
+      "node": "20.19.5", 
+      "env": {
+        "EXPO_USE_FAST_RESOLVER": "1"
+      },
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      },
+      "cache": {
+        "key": "v2"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
