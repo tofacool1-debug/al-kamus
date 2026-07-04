@@ -48,6 +48,8 @@ export function getTasrifIstilahi(entry: DictionaryEntry): TasrifIstilahiData {
       amr: entry.amr || `ا${prefixV}${fa}${S}${ain}${ainV}${lam}${S}`,
       nahi: entry.nahi || `لَا تَ${fa}${S}${ain}${ainV}${lam}${S}`,
       isimZamanMakan: entry.isimZamanMakan || `مَ${fa}${S}${ain}${F}${lam}${TD}`,
+      sifatMusyabihat: entry.sifatMusyabihat || "—",
+      isimAlat: entry.isimAlat || "—",
     };
   }
 
@@ -67,6 +69,8 @@ export function getTasrifIstilahi(entry: DictionaryEntry): TasrifIstilahiData {
     amr: `ا${prefixV}${fa}${S}${ain}${ainVMudhari}${lam}${S}`,
     nahi: `لَا تَ${fa}${S}${ain}${ainVMudhari}${lam}${S}`,
     isimZamanMakan: `مَ${fa}${S}${ain}${izkAinV}${lam}${TD}`,
+    sifatMusyabihat: entry.sifatMusyabihat || "—",
+    isimAlat: entry.isimAlat || "—",
   };
 }
 

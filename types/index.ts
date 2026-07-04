@@ -15,9 +15,22 @@ export interface DictionaryEntry {
   nahi?: string;
   isimZamanMakan?: string;
   sifatMusyabihat?: string;
+  masdarQiyasi?: string;
+  sifatMusyabihatPlural?: Partial<PluralSifatMusyabihat>;
+  jamaTaksirSamai?: string;
+  isimAlat?: string;
   explanation?: string;
   notes?: string;
   isLazim?: boolean;
+}
+
+export interface DataWazan {
+  fa: string;
+  ain: string;
+  lam: string;
+  wazanMadhi: string;
+  wazanMudhari: string;
+  masdar: string;
 }
 
 export interface TasrifIstilahiData {

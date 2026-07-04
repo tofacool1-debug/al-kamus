@@ -4548,6 +4548,59 @@ export const PRESET_DICTIONARY: DictionaryEntry[] = [
 ];
 
 // Map Bab Number to representative Wazan templates
+export function searchDictionary(entries: DictionaryEntry[], query: string): DictionaryEntry[] {
+  const normalized = query.trim().toLowerCase();
+  if (!normalized) return entries;
+
+  return entries.filter((entry) => {
+    const haystack = [
+      entry.id,
+      entry.bina,
+      entry.translation,
+      entry.masdar,
+      entry.masdarSamai,
+      entry.masdarQiyasi,
+      entry.sifatMusyabihat,
+      entry.asal,
+      entry.root.fa,
+      entry.root.ain,
+      entry.root.lam,
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return haystack.includes(normalized);
+  });
+}
+
+export function groupByBab(entries: DictionaryEntry[]): Record<number, DictionaryEntry[]> {
+  return entries.reduce((acc, entry) => {
+    const key = entry.babNum;
+    acc[key] = acc[key] || [];
+    acc[key].push(entry);
+    return acc;
+  }, {} as Record<number, DictionaryEntry[]>);
+}
+
+export function groupByBina(entries: DictionaryEntry[]): Record<string, DictionaryEntry[]> {
+  return entries.reduce((acc, entry) => {
+    const key = entry.bina || "Unknown";
+    acc[key] = acc[key] || [];
+    acc[key].push(entry);
+    return acc;
+  }, {} as Record<string, DictionaryEntry[]>);
+}
+
+export function groupByHijaiyah(entries: DictionaryEntry[]): Record<string, DictionaryEntry[]> {
+  return entries.reduce((acc, entry) => {
+    const key = entry.root?.fa || "";
+    acc[key] = acc[key] || [];
+    acc[key].push(entry);
+    return acc;
+  }, {} as Record<string, DictionaryEntry[]>);
+}
+
 export const WAZAN_TEMPLATES: Record<number, DataWazan> = {
   1: {
     fa: "ف",
