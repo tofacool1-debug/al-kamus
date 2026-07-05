@@ -30,8 +30,8 @@ export interface TasrifIstilahiData {
   amr: string;
   nahi: string;
   isimZamanMakan: string;
-  isimAlat:string;
-  sifatMusyabihat:string;
+  isimAlat: string;
+  sifatMusyabihat: string;
 }
 
 export interface TasrifLughowiRow {
