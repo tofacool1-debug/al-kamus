@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Platform, Clipboard, ScrollView } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { IilalEngine } from "@/utils/iilalEngine"; // pastikan path ini bener
+import { IilalEngine } from "@/utils/iilalEngine";
 import { getVocalizedRoot } from "@/utils/tasrifEngine";
 import { DictionaryEntry } from "@/types";
 
