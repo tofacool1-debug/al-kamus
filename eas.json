@@ -7,7 +7,6 @@
     "production": {
       "distribution": "internal",
       "node": "20.18.0",
-      "packageManager": "npm",
       "android": {
         "buildType": "apk"
       }
@@ -17,7 +16,6 @@
       "channel": "production",
       "distribution": "internal",
       "node": "20.18.0",
-      "packageManager": "npm",
       "env": {
         "EXPO_USE_FAST_RESOLVER": "1"
       },
