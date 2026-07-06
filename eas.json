@@ -4,7 +4,7 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "production": {
+    "preview": {
       "distribution": "internal",
       "node": "20.18.0",
       "android": {
