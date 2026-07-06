@@ -5,7 +5,9 @@
   },
   "build": {
     "production": {
-      "install": { "strategy": "npm-install" },
+      "install": { 
+        "strategy": "npm-install" 
+      },
       "node": "20.19.4",
       "autoIncrement": true,
       "channel": "production",
