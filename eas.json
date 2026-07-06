@@ -1,6 +1,7 @@
 {
   "cli": {
     "version": ">=16.0.0",
+    "requireCommit": false,
     "appVersionSource": "remote"
   },
   "build": {
@@ -9,6 +10,7 @@
         "strategy": "npm-install" 
       },
       "node": "20.19.4",
+      "bun": null,
       "autoIncrement": true,
       "channel": "production",
       "distribution": "internal",
@@ -17,7 +19,20 @@
         "gradleCommand": ":app:assembleRelease"
       },
       "cache": {
-        "key": "v2"
+        "key": "v2",
+        "customPaths": [
+          "node_modules"
+        ]
+      }
+    },
+    "preview": {
+      "install": { 
+        "strategy": "npm-install" 
+      },
+      "node": "20.19.4",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
       }
     }
   },
