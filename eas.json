@@ -4,8 +4,10 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "preview": {
+    "production": {
       "distribution": "internal",
+      "node": "20.x",
+      "yarn": "false",
       "android": {
         "buildType": "apk"
       }
