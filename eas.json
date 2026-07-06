@@ -5,6 +5,7 @@
   },
   "build": {
     "production": {
+      "node": "20.19.4",
       "autoIncrement": true,
       "channel": "production",
       "distribution": "internal",
