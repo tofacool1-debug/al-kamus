@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node server.ts",
-    "start": "node server.ts",
-    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
-    "lint": "tsc --noEmit"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eas:configure": "eas configure",
+    "eas:build:android": "eas build -p android",
+    "eas:update": "eas update --auto"
   },
   "dependencies": {
     "expo": "~57.0.0",
