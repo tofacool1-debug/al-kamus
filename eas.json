@@ -6,7 +6,7 @@
   "build": {
     "production": {
       "distribution": "internal",
-      "node": "20.x",
+      "node": "20.18.0",
       "yarn": "false",
       "android": {
         "buildType": "apk"
