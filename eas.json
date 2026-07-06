@@ -7,7 +7,7 @@
     "production": {
       "distribution": "internal",
       "node": "20.18.0",
-      "yarn": "false",
+      "parkmanager": "npm",
       "android": {
         "buildType": "apk"
       }
@@ -15,7 +15,9 @@
     "production": {
       "autoIncrement": true,
       "channel": "production",
-      "distribution": "internal", 
+      "distribution": "internal",
+      "node": "20.18.0",
+      "parkmanager": "npm",
       "env": {
         "EXPO_USE_FAST_RESOLVER": "1"
       },
