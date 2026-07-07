@@ -6,30 +6,31 @@
   },
   "build": {
     "production": {
-      "install": { 
-        "strategy": "npm-install" 
-      },
-      "node": "20.19.4",
-      "bun": null,
+      "node": "22.13.0",
       "autoIncrement": true,
       "channel": "production",
-      "distribution": "internal",
+      "distribution": "store",
       "android": {
-        "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "buildType": "aab"
       },
       "cache": {
-        "key": "v2",
-        "customPaths": [
-          "node_modules"
-        ]
+        "key": "v3-sdk57",
+        "customPaths": ["node_modules"]
       }
     },
     "preview": {
-      "install": { 
-        "strategy": "npm-install" 
+      "node": "22.13.0",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
       },
-      "node": "20.19.4",
+      "cache": {
+        "key": "v3-sdk57"
+      }
+    },
+    "development": {
+      "node": "22.13.0",
+      "developmentClient": true,
       "distribution": "internal",
       "android": {
         "buildType": "apk"
@@ -39,4 +40,4 @@
   "submit": {
     "production": {}
   }
-}
+}: 
