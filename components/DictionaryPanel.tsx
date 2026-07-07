@@ -4,7 +4,6 @@ import { Feather } from "@expo/vector-icons";
 import { DictionaryEntry, ThemeColors } from "../types";
 import { PRESET_DICTIONARY, getVocalizedRoot, searchDictionary, groupByBab, groupByBina, groupByHijaiyah } from "../data/dictionary";
 import { IilalEngine } from "../utils/iilalEngine";
-import { loadEntriesFromIndexedDB, saveEntriesToIndexedDB } from "../lib/initDB";
   
 const BAB_LABELS: Record<number, string> = {
   1: "Fathul-Dhammi",
