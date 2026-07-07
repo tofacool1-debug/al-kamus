@@ -6,32 +6,21 @@ import { useFonts } from "expo-font";
 import { initDB } from "@/lib/initDB";
 import { PremiumProvider } from '@/context/PremiumContext';
 
-export default function RootLayout() {
-  useEffect(() => { initDB(); }, []);
-
-  return (
-    <PremiumProvider>
-      <Stack />
-    </PremiumProvider>
-  );
-}
-
-// Cegah splash auto hide
+// 1. Cegah splash auto hide
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [dbReady, setDbReady] = useState(false);
 
   const [fontsLoaded] = useFonts({
-    // taruh font kamu di sini kalau ada
-    // "Amiri": require("../assets/fonts/Amiri-Regular.ttf"),
+    "Amiri": require("../assets/fonts/Amiri-Regular.ttf"),
   });
 
-  // 1. Init DB + Font
+  // 2. Init DB
   useEffect(() => {
     async function prepare() {
       try {
-        await initDB(); // buka IndexedDB
+        await initDB();
       } catch (e) {
         console.warn("Gagal init DB", e);
       } finally {
@@ -41,7 +30,7 @@ export default function RootLayout() {
     prepare();
   }, []);
 
-  // 2. Sembunyikan splash kalau font + db udah siap
+  // 3. Sembunyikan splash kalau font + db udah siap
   useEffect(() => {
     if (fontsLoaded && dbReady) {
       SplashScreen.hideAsync();
@@ -49,16 +38,16 @@ export default function RootLayout() {
   }, [fontsLoaded, dbReady]);
 
   if (!fontsLoaded ||!dbReady) {
-    return null; // tetap tampilkan splash
+    return null;
   }
 
   return (
-    <>
+    <PremiumProvider>
       <StatusBar style="auto" />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="not-found" options={{ presentation: "modal" }} />
       </Stack>
-    </>
+    </PremiumProvider>
   );
 }
