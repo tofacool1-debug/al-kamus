@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { DictionaryEntry, ThemeColors } from "../types";
-import { analyzeSifatMusyabihatPlural } from "../utils/sifatMusyabihatPlural";
-import { getTasrifIstilahi } from "../utils/iilalEngine";
+import { DictionaryEntry, ThemeColors } from "../../types";
+import { analyzeSifatMusyabihatPlural } from "../../utils/sifatMusyabihatPlural";
+import { getTasrifIstilahi } from "../../utils/iilalEngine";
 
 interface Props {
   entry: DictionaryEntry;
