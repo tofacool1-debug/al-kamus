@@ -11,7 +11,7 @@
       "channel": "production",
       "distribution": "store",
       "android": {
-        "buildType": "aab"
+        "buildType": "apk"
       },
       "cache": {
         "key": "v3-sdk57",
