@@ -2,7 +2,7 @@ import React, { usestate } from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Clipboard, Dimensions } from "react-native";
 import { TasrifIstilahi, ShighotDetail } from "../types";
 import { Info, Lock, ChevronLeft, ChevronRight } from "@expo/vector-icons";
-import { IilalEngine } from "../utils/iilalEngine";
+import { IilalEngine } from "../../utils/iilalEngine";
 
 interface TasrifIstilahiViewProps {
   tasrif: TasrifIstilahi;
