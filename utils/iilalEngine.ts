@@ -1,14 +1,21 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { DataWazan, ShighotDetail, TasrifIstilahi, TasrifLughowi, DictionaryEntry, PluralIsimFail, PluralIsimMaful, PluralIsimZamanMakan, PluralIsimAlat } from "../types";
-import { DictionaryEntry,
-  PluralIsimFail,
-  PluralIsimMaful,
-  PluralIsimZamanMakan,
-  PluralIsimAlat } from "../jamakEngine";
+import {
+  DataWazan, 
+  ShighotDetail, 
+  TasrifIstilahi, 
+  TasrifLughowi, 
+  DictionaryEntry, 
+  PluralIsimFail as TypePluralIsimFail,
+  PluralIsimMaful as TypePluralIsimMaful,
+  PluralIsimZamanMakan as TypePluralIsimZamanMakan,
+  PluralIsimAlat as TypePluralIsimAlat,
+} from "../types";
+import { 
+  analyzeIsimFailPlural,
+  analyzeIsimMafulPlural,
+  analyzeIsimZamanMakanPlural,
+  analyzeIsimAlatPlural,
+  getPluralBinaKey
+} from "../jamakEngine";
 
 const wazanDB: Record<string, any> = {};
 
