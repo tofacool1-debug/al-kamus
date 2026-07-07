@@ -4,9 +4,6 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { initDB } from "@/lib/initDB";
-import { useEffect } from 'react';
-import { Stack } from 'expo-router';
-import { initDB } from '@/lib/db';
 import { PremiumProvider } from '@/context/PremiumContext';
 
 export default function RootLayout() {
