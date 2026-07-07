@@ -15,7 +15,7 @@ import {
   analyzeIsimZamanMakanPlural,
   analyzeIsimAlatPlural,
   getPluralBinaKey
-} from "../jamakEngine";
+} from "./jamakEngine";
 
 const wazanDB: Record<string, any> = {};
 
