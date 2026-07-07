@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Clipboard } from "react-native";
-import { TasrifIstilahi, TasrifLughowi } from "../types";
-import { IilalEngine } from "../utils/iilalEngine";
-import { PRONOUNS_14, PRONOUNS_12, PRONOUNS_ISIM_6 } from "../data/dictionary";
+import { TasrifIstilahi, TasrifLughowi } from "../../types";
+import { IilalEngine } from "../../utils/iilalEngine";
+import { PRONOUNS_14, PRONOUNS_12, PRONOUNS_ISIM_6 } from "../../data/dictionary";
 import {
   Info, Copy, LockClosed, Sparkles, Book, Pulse, Ribbon,
   Person, PersonAdd, Time, Location, Hammer, ChevronForward
