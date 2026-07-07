@@ -4,21 +4,21 @@ import {
   SafeAreaView, Animated, Platform, ActivityIndicator, StyleSheet
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { useAppContext } from "@/context/AppContext";
-import { PRESET_DICTIONARY } from "@/data/dictionary";
-import { getVocalizedRoot, getTasrifIstilahi, getTasrifLughowi, getMasdar, getSifat, getJamak, getIilal } from "@/utils/tasrifEngine";
-import { getBabExplanation } from "@/utils/iilalEngine";
-import { DictionaryEntry, TabType } from "@/types";
-import DictionaryPanel from "@/components/DictionaryPanel";
-import TasrifIstilahiTab from "@/components/tabs/TasrifIstilahiTab";
-import TasrifLughowiTab from "@/components/tabs/TasrifLughowiTab";
-import MasdarTab from "@/components/tabs/MasdarTab";
-import SifatTab from "@/components/tabs/SifatTab";
-import JamakTab from "@/components/tabs/JamakTab";
-import IilalTab from "@/components/tabs/IilalTab";
-import ProfileModal from "@/components/modals/ProfileModal";
-import PremiumModal from "@/components/modals/PremiumModal";
-import { getTasrifCache, saveTasrifCache, initDB } from "@/lib/initDB";
+import { useAppContext } from "../context/AppContext";
+import { PRESET_DICTIONARY } from "../data/dictionary";
+import { getVocalizedRoot, getTasrifIstilahi, getTasrifLughowi, getMasdar, getSifat, getJamak, getIilal } from "../utils/tasrifEngine";
+import { getBabExplanation } from "../utils/iilalEngine";
+import { DictionaryEntry, TabType } from "../types";
+import DictionaryPanel from "../components/DictionaryPanel";
+import TasrifIstilahiTab from "../components/tabs/TasrifIstilahiTab";
+import TasrifLughowiTab from "../components/tabs/TasrifLughowiTab";
+import MasdarTab from "../components/tabs/MasdarTab";
+import SifatTab from "../components/tabs/SifatTab";
+import JamakTab from "../components/tabs/JamakTab";
+import IilalTab from "../components/tabs/IilalTab";
+import ProfileModal from "../components/modals/ProfileModal";
+import PremiumModal from "../components/modals/PremiumModal";
+import { getTasrifCache, saveTasrifCache, initDB } from "../lib/initDB";
 import { useFonts } from "expo-font";
 
 const TABS: { key: TabType; label: string; icon: string; premium: boolean }[] = [
