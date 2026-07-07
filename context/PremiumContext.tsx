@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { dbSettings } from '../lib/db';
+import { dbSettings } from '../lib/initDB';
 import * as Haptics from 'expo-haptics';
 
 interface PremiumContextType {
