@@ -18,7 +18,7 @@ export interface DictionaryEntry {
   sifatMusyabihat?: string;
   explanation?: string;
   notes?: string;
-  isLazim?: boolean;
+  is-?: boolean;
 }
 
 export interface TasrifIstilahiData {
@@ -32,6 +32,7 @@ export interface TasrifIstilahiData {
   isimZamanMakan: string;
   isimAlat: string;
   sifatMusyabihat: string;
+  isimTashgir: string;
 }
 
 export interface TasrifLughowiRow {
