@@ -2,8 +2,7 @@ import React, { useState, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { DictionaryEntry, ThemeColors } from "../types";
-import { PRESET_DICTIONARY, searchDictionary, groupByBab, groupByBina, groupByHijaiyah } from "../data/dictionary";
-import { getVocalizedRoot } from "../utils/tasrifEngine";
+import { PRESET_DICTIONARY, getVocalizedRoot, searchDictionary, groupByBab, groupByBina, groupByHijaiyah } from "../data/dictionary";
 
 const BAB_LABELS: Record<number, string> = {
   1: "Fathul-Dhammi",
