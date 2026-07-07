@@ -4,9 +4,11 @@
  */
 
 import { DataWazan, ShighotDetail, TasrifIstilahi, TasrifLughowi, DictionaryEntry, PluralIsimFail, PluralIsimMaful, PluralIsimZamanMakan, PluralIsimAlat } from "../types";
-import { analyzeIsimFail as analyzeIsimFailPlural } from "./isimFailPlural";
-import { analyzeIsimMafulPlural } from "./isimMafulPlural";
-import { analyzeIsimZamanMakanPlural, analyzeIsimAlatPlural } from "./isimZamanMakanAlatPlural";
+import { DictionaryEntry,
+  PluralIsimFail,
+  PluralIsimMaful,
+  PluralIsimZamanMakan,
+  PluralIsimAlat } from "../jamakEngine";
 
 const wazanDB: Record<string, any> = {};
 
