@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { initDB } from "../lib/initDB";
-import { PremiumProvider } from '@/context/PremiumContext';
+import { PremiumProvider } from "../context/PremiumContext';
 
 // 1. Cegah splash auto hide
 SplashScreen.preventAutoHideAsync();
