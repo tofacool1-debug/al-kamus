@@ -1,9 +1,4 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import React from "react";
+import React, { usestate } from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Clipboard, Dimensions } from "react-native";
 import { TasrifIstilahi, ShighotDetail } from "../types";
 import { Info, Lock, ChevronLeft, ChevronRight } from "@expo/vector-icons";
