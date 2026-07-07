@@ -20,8 +20,7 @@ const ALL_WAZANS = [
   { wazan: "أَفْعَلُ", example: "أَحْمَرُ", meaning: "Warna / cacat (حمر)" },
   { wazan: "فَعَالٌ",  example: "جَبَانٌ",  meaning: "Sifat hiperbolis (جبن)" },
   { wazan: "فَعُولٌ",  example: "صَبُورٌ",  meaning: "Sabar / tekun (صبر)" },
-  { wazan: "فَعْلٌ", example: "سَهْلٌ",
-  meaning: "mudah ("سُهُوْلٌ:"),
+  { wazan: "فَعْلٌ", example: "سَهْلٌ", meaning: "mudah (سُهُوْلٌ:)" },
 ];
 
 function InfoRow({ label, value, accent, tc }: { label: string; value: string; accent: string; tc: ThemeColors }) {
