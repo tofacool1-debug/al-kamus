@@ -1,30 +1,39 @@
 {
   "cli": {
     "version": ">=16.0.0",
+    "requireCommit": false,
     "appVersionSource": "remote"
   },
   "build": {
     "production": {
-      "distribution": "internal",
-      "node": "20.18.0",
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "production": {
+      "node": "22.13.0",
       "autoIncrement": true,
       "channel": "production",
-      "distribution": "internal",
-      "node": "20.18.0",
-      "env": {
-        "EXPO_USE_FAST_RESOLVER": "1"
-      },
+      "distribution": "store",
       "android": {
-        "buildType": "apk",
-        "gradleCommand": ":app:assembleRelease"
+        "buildType": "apk"
       },
       "cache": {
-        "key": "v2"
+        "key": "v3-sdk57",
+        "customPaths": ["node_modules"]
+      }
+    },
+    "preview": {
+      "node": "22.13.0",
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "cache": {
+        "key": "v3-sdk57"
+      }
+    },
+    "development": {
+      "node": "22.13.0",
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
       }
     }
   },
