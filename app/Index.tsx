@@ -6,7 +6,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 import { useAppContext } from "../context/AppContext";
 import { PRESET_DICTIONARY } from "../data/dictionary";
-import { getVocalizedRoot, getTasrifIstilahi, getTasrifLughowi, getMasdar, getSifat, getJamak, getIilal } from "../utils/tasrifEngine";
+import { getVocalizedRoot, getTasrifIstilahi, getTasrifLughowi, getMasdar, getSifat, getJamak, getIilal } from "../utils/iilalEngine";
 import { getBabExplanation } from "../utils/iilalEngine";
 import { DictionaryEntry, TabType } from "../types";
 import DictionaryPanel from "../components/DictionaryPanel";
