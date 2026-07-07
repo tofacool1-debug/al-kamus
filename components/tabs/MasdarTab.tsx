@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Clipboard } from "react-native";
-import { DictionaryEntry } from "../types";
-import { IilalEngine } from "../utils/iilalEngine";
-import { getVocalizedRoot } from "../data/dictionary";
+import { DictionaryEntry } from "../../types";
+import { IilalEngine } from "../../utils/iilalEngine";
+import { getVocalizedRoot } from "../../data/dictionary";
 import { Grid, InformationCircle } from "@expo/vector-icons/Ionicons";
 
 interface ShorofMasdarTableViewProps {
