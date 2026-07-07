@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { DictionaryEntry, ThemeColors } from "../../types";
 import { getIilalExplanation } from "../../utils/iilalEngine";
-import { getVocalizedRoot } from "../../utils/tasrifEngine";
+import { getVocalizedRoot } from "../../utils/iilalEngine";
 
 interface Props {
   entry: DictionaryEntry;
