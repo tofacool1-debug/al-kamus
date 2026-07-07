@@ -4,9 +4,9 @@
  */
 
 import { DataWazan, ShighotDetail, TasrifIstilahi, TasrifLughowi, DictionaryEntry, PluralIsimFail, PluralIsimMaful, PluralIsimZamanMakan, PluralIsimAlat } from "../types";
-import { analyzeIsimFailPlural } from "./isimFailPlural";
-import { analyzeIsimMafulPlural } from "./isimMafulPlural";
-import { analyzeIsimZamanMakanPlural, analyzeIsimAlatPlural } from "./isimZamanMakanAlatPlural";
+import { analyzeIsimFailPlural } from "./jamakEngine";
+import { analyzeIsimMafulPlural } from "./jamakEngine";
+import { analyzeIsimZamanMakanPlural, analyzeIsimAlatPlural } from "./jamakEngine";
 
 // Arabic harakat constants
 const FATHA = "\u064e";
