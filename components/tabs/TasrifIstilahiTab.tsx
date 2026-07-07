@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { DictionaryEntry, ThemeColors, TasrifIstilahiData } from "../../types";
-import { getTasrifIstilahi } from "../../utils/tasrifEngine";
+import { getTasrifIstilahi } from "../../utils/iilalEngine";
 
 interface Props {
   entry: DictionaryEntry;
