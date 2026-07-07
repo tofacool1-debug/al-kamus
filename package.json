@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "expo": "~57.0.0",
-    "react": "19.1.0",
-    "react-native": "0.79.5",
+    "react": "19.2.0",
+    "react-native": "0.86.0",
     "expo-router": "~5.1.0",
     "expo-status-bar": "~2.2.3",
     "expo-splash-screen": "~31.0.0",
@@ -35,6 +35,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "typescript": "~5.8.3",
-    "@types/react": "~19.1.0"
+    "@types/react": "~19.2.0"
   }
 }
