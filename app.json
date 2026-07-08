@@ -7,22 +7,13 @@
     "icon": "./assets/images/icon.png",
     "scheme": "shorof-digital",
     "userInterfaceStyle": "dark",
-
-    "assetBundlePatterns": [
-      "**/*",
-      "assets/fonts/*"
-    ],
-
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.shorof.digital"
     },
     "android": {
       "package": "com.shorof.digital",
-      "backgroundColor": "#ffffff",
-      "versionCode": 1,
-      "splitApk": true,
-      "enableProguardInReleaseBuilds": false
+      "backgroundColor": "#ffffff"
     },
     "web": {
       "favicon": "./assets/images/icon.png"
@@ -32,7 +23,8 @@
       "expo-router",
       "expo-status-bar",
       "expo-splash-screen",
-      "expo-sharing"
+      "expo-sharing",
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true,
