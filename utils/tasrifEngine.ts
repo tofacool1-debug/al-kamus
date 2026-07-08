@@ -48,6 +48,8 @@ export function getTasrifIstilahi(entry: DictionaryEntry): TasrifIstilahiData {
       amr: entry.amr || `ا${prefixV}${fa}${S}${ain}${ainV}${lam}${S}`,
       nahi: entry.nahi || `لَا تَ${fa}${S}${ain}${ainV}${lam}${S}`,
       isimZamanMakan: entry.isimZamanMakan || `مَ${fa}${S}${ain}${F}${lam}${TD}`,
+      isimAlat: entry.isimZamanMakan || `مَ${fa}${S}${ain}${F}${lam}${TD}`,
+      sifatMusyabihat: entry.sifatMusyabihat || "—",
     };
   }
 
@@ -67,7 +69,29 @@ export function getTasrifIstilahi(entry: DictionaryEntry): TasrifIstilahiData {
     amr: `ا${prefixV}${fa}${S}${ain}${ainVMudhari}${lam}${S}`,
     nahi: `لَا تَ${fa}${S}${ain}${ainVMudhari}${lam}${S}`,
     isimZamanMakan: `مَ${fa}${S}${ain}${izkAinV}${lam}${TD}`,
+    isimAlat: `مَ${fa}${S}${ain}${izkAinV}${lam}${TD}`,
+    sifatMusyabihat: entry.sifatMusyabihat || "—",
   };
+}
+
+export function getTasrifLughowi(entry: DictionaryEntry): TasrifLughowiRow[] {
+  return getMadhiLughowi(entry);
+}
+
+export function getMasdar(entry: DictionaryEntry): { masdar: string } {
+  return { masdar: entry.masdar || entry.masdarSamai || entry.translation || "—" };
+}
+
+export function getSifat(entry: DictionaryEntry): { sifat: string } {
+  return { sifat: entry.sifatMusyabihat || "—" };
+}
+
+export function getJamak(entry: DictionaryEntry): { jama: string } {
+  return { jama: entry.jamaTaksirSamai || entry.translation || "—" };
+}
+
+export function getIilal(entry: DictionaryEntry): { bina: string } {
+  return { bina: entry.bina || "Shohih" };
 }
 
 export function getMadhiLughowi(entry: DictionaryEntry): TasrifLughowiRow[] {

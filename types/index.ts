@@ -1,3 +1,43 @@
+export interface DataWazan {
+  name?: string;
+  type?: string;
+  description?: string;
+  fa?: string;
+  ain?: string;
+  lam?: string;
+  wazanMadhi?: string;
+  wazanMudhari?: string;
+  masdar?: string;
+  sifatMusyabihat?: string;
+  babNum?: number;
+}
+
+export interface ShighotDetail {
+  label?: string;
+  value?: string;
+  mufrod?: string;
+  jamak?: string[];
+  muntahal?: string[];
+  [key: string]: any;
+}
+
+export interface TasrifIstilahi {
+  madhi?: string;
+  mudhari?: string;
+  masdar?: string;
+  isimFail?: string;
+  isimMaful?: string;
+  amr?: string;
+  nahi?: string;
+  isimZamanMakan?: string;
+  isimAlat?: string;
+  sifatMusyabihat?: string;
+}
+
+export interface TasrifLughowi {
+  rows?: TasrifLughowiRow[];
+}
+
 export interface DictionaryEntry {
   id: string;
   root: { fa: string; ain: string; lam: string };
@@ -16,9 +56,26 @@ export interface DictionaryEntry {
   nahi?: string;
   isimZamanMakan?: string;
   sifatMusyabihat?: string;
+  sifatMusyabihatPlural?: {
+    mufrodMudzakkar?: string;
+    mufrod_mudzakkar?: string;
+    mufrodMuannas?: string;
+    mufrod_muannas?: string;
+    katsroh?: string;
+    qillah?: string;
+    muntahal?: string;
+    wazanName?: string;
+    wazan_name?: string;
+    isQiyasi?: boolean;
+    isSamai?: boolean;
+    reference?: string;
+    explanation?: string;
+  };
   explanation?: string;
   notes?: string;
   isLazim?: boolean;
+  jamaTaksirSamai?: string;
+  [key: string]: any;
 }
 
 export interface TasrifIstilahiData {

@@ -8,6 +8,7 @@ import { getVocalizedRoot } from "../../utils/tasrifEngine";
 interface Props {
   entry: DictionaryEntry;
   tc: ThemeColors;
+  data?: unknown;
 }
 
 const BINA_COLORS: Record<string, string> = {

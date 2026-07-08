@@ -7,9 +7,10 @@ import { getMadhiLughowi, getMudhariLughowi } from "../../utils/tasrifEngine";
 interface Props {
   entry: DictionaryEntry;
   tc: ThemeColors;
+  data?: unknown;
 }
 
-export default function TasrifLughowiTab({ entry, tc }: Props) {
+export default function TasrifLughowiTab({ entry, tc, data: _data }: Props) {
   const [activeConjug, setActiveConjug] = useState<"madhi" | "mudhari">("madhi");
   const madhiRows = getMadhiLughowi(entry);
   const mudhariRows = getMudhariLughowi(entry);

@@ -1,84 +1,26 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Platform, Clipboard, ScrollView } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { IilalEngine } from "@/utils/iilalEngine";
-import { getVocalizedRoot } from "@/utils/tasrifEngine";
-import { DictionaryEntry } from "@/types";
+import { View, Text } from "react-native";
+import { DictionaryEntry, ThemeColors } from "@/types";
 
-interface ShorofMasdarTableViewProps {
-  entries: DictionaryEntry[];
-  activeEntryId?: string;
-  onSelectEntry?: (entry: DictionaryEntry) => void;
-  isPremium?: boolean;
-  onUnlock?: () => void;
-  lafadzSize?: "small" | "medium" | "large" | "xlarge";
-  appTheme?: "light" | "dark" | "green";
-  tc: any; // theme colors dari context kamu
+interface Props {
+  entry?: DictionaryEntry;
+  data?: unknown;
+  tc: ThemeColors;
 }
 
-export default function ShorofMasdarTableView({
-  entries,
-  activeEntryId,
-  lafadzSize = "medium",
-  appTheme = "light",
-  tc,
-}: ShorofMasdarTableViewProps) {
-  const activeEntry = entries.find((e) => e.id === activeEntryId) || entries[0];
+export default function MasdarTab({ entry, data, tc }: Props) {
+  const source = Array.isArray(data) ? data : data && typeof data === "object" ? (data as { entries?: DictionaryEntry[] }).entries ?? [] : [];
+  const masdar = entry?.masdar || entry?.translation || "—";
 
-  if (!activeEntry) {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text style={{ color: tc.subText, fontFamily: 'monospace', fontSize: 12 }}>
-          Tidak ada data kosa kata aktif.
-        </Text>
-      </View>
-    );
-  }
-
-  const getArabicFontSize = () => {
-    switch (lafadzSize) {
-      case "small": return 14;
-      case "large": return 20;
-      case "xlarge": return 24;
-      case "medium":
-      default: return 16;
-    }
-  };
-
-  const handleCopy = (text: string) => {
-    Clipboard.setString(text);
-  };
-
-  const renderMasdarCell = (val: string | string[] | undefined) => {
-    if (!val) return <Text style={styles.emptyText}>—</Text>;
-
-    let arr: string[] = [];
-    if (Array.isArray(val)) {
-      arr = val;
-    } else if (typeof val === "string") {
-      arr = val.split(/[,/]/).map((s) => s.trim()).filter(Boolean);
-    }
-
-    if (arr.length === 0) {
-      return <Text style={styles.emptyText}>—</Text>;
-    }
-
-    return (
-      <View style={styles.masdarWrap}>
-        {arr.map((item, idx) => (
-          <TouchableOpacity
-            key={idx}
-            onPress={() => handleCopy(item)}
-            style={[
-              styles.masdarBadge,
-              {
-                backgroundColor: appTheme === "light"? "rgba(16,185,129,0.1)" : "rgba(16,185,129,0.2)",
-                borderColor: appTheme === "light"? "rgba(16,185,129,0.2)" : "rgba(16,185,129,0.4)",
-              }
-            ]}
-          >
-            <Text style={[styles.masdarText, { fontSize: getArabicFontSize(), color: appTheme === "light"? "#065f46" : "#6ee7b7" }]}>
-              {item}
-            </Text>
-          </TouchableOpacity>
-        ))}
+  return (
+    <View style={{ gap: 8 }}>
+      <Text style={{ fontSize: 12, fontWeight: "900", color: tc.textColor }}>Masdar</Text>
+      <Text style={{ fontSize: 10, color: tc.subText }}>
+        {source.length > 0 ? `${source.length} item tersedia untuk ditampilkan.` : "Data masdar belum tersedia."}
+      </Text>
+      {entry ? (
+        <Text style={{ fontSize: 16, fontWeight: "900", color: tc.accentText }}>{masdar}</Text>
+      ) : null}
+    </View>
+  );
+}

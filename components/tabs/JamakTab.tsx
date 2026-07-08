@@ -8,8 +8,9 @@ import { analyzeIsimFailPlural, analyzeIsimMafulPlural, analyzeIsimZamanMakanPlu
 interface Props {
   entry: DictionaryEntry;
   tc: ThemeColors;
-  isPremium: boolean;
-  onUnlock: () => void;
+  data?: unknown;
+  isPremium?: boolean;
+  onUnlock?: () => void;
 }
 
 const SUB_TABS: { key: JamakTabType; label: string; accent: string }[] = [

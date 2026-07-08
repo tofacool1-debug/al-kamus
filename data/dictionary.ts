@@ -1,5 +1,43 @@
 import { DictionaryEntry, DataWazan } from "../types";
 
+export function searchDictionary(entries: DictionaryEntry[], query: string) {
+  const q = query.trim().toLowerCase();
+  if (!q) return entries;
+  return entries.filter((entry) => {
+    const haystack = [entry.id, entry.translation, entry.root.fa, entry.root.ain, entry.root.lam, entry.bina, entry.masdar, entry.sifatMusyabihat, entry.explanation]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+    return haystack.includes(q);
+  });
+}
+
+export function groupByBab(entries: DictionaryEntry[]) {
+  return entries.reduce<Record<number, DictionaryEntry[]>>((acc, entry) => {
+    acc[entry.babNum] ||= [];
+    acc[entry.babNum].push(entry);
+    return acc;
+  }, {});
+}
+
+export function groupByBina(entries: DictionaryEntry[]) {
+  return entries.reduce<Record<string, DictionaryEntry[]>>((acc, entry) => {
+    const key = entry.bina || "Lainnya";
+    acc[key] ||= [];
+    acc[key].push(entry);
+    return acc;
+  }, {});
+}
+
+export function groupByHijaiyah(entries: DictionaryEntry[]) {
+  return entries.reduce<Record<string, DictionaryEntry[]>>((acc, entry) => {
+    const letter = (entry.root.fa || "").slice(0, 1).toUpperCase();
+    acc[letter || "—"] ||= [];
+    acc[letter || "—"].push(entry);
+    return acc;
+  }, {});
+}
+
 export const PRESET_DICTIONARY: DictionaryEntry[] = [
   {
     id: "qala",

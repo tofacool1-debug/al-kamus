@@ -23,7 +23,8 @@
       "expo-router",
       "expo-status-bar",
       "expo-splash-screen",
-      "expo-sharing"
+      "expo-sharing",
+      "expo-build-properties"
     ],
     "experiments": {
       "typedRoutes": true,

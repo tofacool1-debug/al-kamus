@@ -7,6 +7,7 @@ import { getTasrifIstilahi } from "../../utils/tasrifEngine";
 interface Props {
   entry: DictionaryEntry;
   tc: ThemeColors;
+  data?: Partial<TasrifIstilahiData> | null;
 }
 
 const ROWS: { key: keyof TasrifIstilahiData; label: string; arLabel: string; accent?: string }[] = [
@@ -20,8 +21,8 @@ const ROWS: { key: keyof TasrifIstilahiData; label: string; arLabel: string; acc
   { key: "isimZamanMakan",label: "Isim Zaman/Makan",   arLabel: "اِسْمُ الزَّمَان/المَكَان", accent: "#94a3b8" },
 ];
 
-export default function TasrifIstilahiTab({ entry, tc }: Props) {
-  const data = getTasrifIstilahi(entry);
+export default function TasrifIstilahiTab({ entry, tc, data: dataProp }: Props) {
+  const data = (dataProp && Object.keys(dataProp).length > 0 ? dataProp : getTasrifIstilahi(entry)) as TasrifIstilahiData;
 
   return (
     <View style={{ gap: 10 }}>

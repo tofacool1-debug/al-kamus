@@ -18,7 +18,7 @@ import JamakTab from "@/components/tabs/JamakTab";
 import IilalTab from "@/components/tabs/IilalTab";
 import ProfileModal from "@/components/modals/ProfileModal";
 import PremiumModal from "@/components/modals/PremiumModal";
-import { getTasrifCache, saveTasrifCache, initDB } from "@/lib/initDB";
+import { getTasrifCache, saveTasrifCache, initDB } from "@/lib/db";
 
 const TABS: { key: TabType; label: string; icon: string; premium: boolean }[] = [
   { key: "istilahi", label: "Istilahi", icon: "book-open", premium: false },

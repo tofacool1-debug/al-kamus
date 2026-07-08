@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
     "allowJs": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
@@ -17,15 +20,30 @@
     "noUnusedParameters": false,
     "noImplicitAny": false,
     "skipLibCheck": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/utils/*": ["utils/*"],
-      "@/context/*": ["context/*"],
-      "@/types/*": ["types/*"],
-      "@/data/*": ["data/*"]
+      "@/*": [
+        "./*"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ],
+      "@/context/*": [
+        "context/*"
+      ],
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/data/*": [
+        "data/*"
+      ]
     }
   },
   "include": [
@@ -37,5 +55,6 @@
   "exclude": [
     "node_modules",
     "dist"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }
