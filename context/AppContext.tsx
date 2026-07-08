@@ -37,41 +37,59 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     (async () => {
       try {
         const [theme, premium, uname, photo, favs] = await Promise.all([
-          AsyncStorage.getItem(K_THEME),
-          AsyncStorage.getItem(K_PREMIUM),
-          AsyncStorage.getItem(K_USERNAME),
-          AsyncStorage.getItem(K_PHOTO),
-          AsyncStorage.getItem(K_FAVORITES),
+          AsyncStorage.getItem(K_THEME).catch(() => null),
+          AsyncStorage.getItem(K_PREMIUM).catch(() => null),
+          AsyncStorage.getItem(K_USERNAME).catch(() => null),
+          AsyncStorage.getItem(K_PHOTO).catch(() => null),
+          AsyncStorage.getItem(K_FAVORITES).catch(() => null),
         ]);
         if (theme) setAppThemeState(theme as AppTheme);
         if (premium === "true") setIsPremiumState(true);
         if (uname) setUsernameState(uname);
         if (photo) setProfilePhotoState(photo);
-        if (favs) setFavorites(JSON.parse(favs));
-      } catch {}
+        if (favs) {
+          try {
+            setFavorites(JSON.parse(favs));
+          } catch (e) {
+            console.warn("Failed to parse favorites:", e);
+          }
+        }
+      } catch (error) {
+        console.warn("Error loading from AsyncStorage:", error);
+      }
     })();
   }, []);
 
   const setAppTheme = (t: AppTheme) => {
     setAppThemeState(t);
-    AsyncStorage.setItem(K_THEME, t).catch(() => {});
+    AsyncStorage.setItem(K_THEME, t).catch((error) => {
+      console.warn("Error saving theme:", error);
+    });
   };
   const setIsPremium = (v: boolean) => {
     setIsPremiumState(v);
-    AsyncStorage.setItem(K_PREMIUM, v ? "true" : "false").catch(() => {});
+    AsyncStorage.setItem(K_PREMIUM, v ? "true" : "false").catch((error) => {
+      console.warn("Error saving premium status:", error);
+    });
   };
   const setUsername = (v: string) => {
     setUsernameState(v);
-    AsyncStorage.setItem(K_USERNAME, v).catch(() => {});
+    AsyncStorage.setItem(K_USERNAME, v).catch((error) => {
+      console.warn("Error saving username:", error);
+    });
   };
   const setProfilePhoto = (v: string) => {
     setProfilePhotoState(v);
-    AsyncStorage.setItem(K_PHOTO, v).catch(() => {});
+    AsyncStorage.setItem(K_PHOTO, v).catch((error) => {
+      console.warn("Error saving profile photo:", error);
+    });
   };
   const toggleFavorite = (id: string) => {
     setFavorites((prev) => {
       const next = prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id];
-      AsyncStorage.setItem(K_FAVORITES, JSON.stringify(next)).catch(() => {});
+      AsyncStorage.setItem(K_FAVORITES, JSON.stringify(next)).catch((error) => {
+        console.warn("Error saving favorites:", error);
+      });
       return next;
     });
   };

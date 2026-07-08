@@ -6,6 +6,7 @@ import { useFonts } from "expo-font";
 import { initDB } from "@/lib/db";
 import { PremiumProvider } from "@/context/PremiumContext";
 import { AppProvider } from "@/context/AppContext";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,11 +48,18 @@ export default function RootLayout() {
   }
 
   return (
-    <AppProvider>
-      <PremiumProvider>
-        <StatusBar style="auto" />
-        <Stack screenOptions={{ headerShown: false }} />
-      </PremiumProvider>
-    </AppProvider>
+    <ErrorBoundary
+      onError={(error, stackTrace) => {
+        console.error("App crashed:", error);
+        console.error("Stack:", stackTrace);
+      }}
+    >
+      <AppProvider>
+        <PremiumProvider>
+          <StatusBar style="auto" />
+          <Stack screenOptions={{ headerShown: false }} />
+        </PremiumProvider>
+      </AppProvider>
+    </ErrorBoundary>
   );
 }

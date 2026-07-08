@@ -43,7 +43,9 @@ const getTasrifEngine = (tab: TabType) => {
     case "sifat": return getSifat;
     case "jama": return getJamak;
     case "iilal": return getIilal;
-    default: return null;
+    default: 
+      console.warn(`Unknown tab: ${tab}`);
+      return getTasrifIstilahi; // Fallback to default engine
   }
 }
 
@@ -56,19 +58,18 @@ export default function HomeScreen() {
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [showBabInfo, setShowBabInfo] = useState(false);
   const [toastMsg, setToastMsg] = useState("");
-
   const [tasrifData, setTasrifData] = useState<any>(null); // cache semua tab
   const [loadingTasrif, setLoadingTasrif] = useState(true);
   const [dbReady, setDbReady] = useState(false);
 
   const toastOpacity = useRef(new Animated.Value(0)).current;
 
+  // DB already initialized in _layout.tsx, just wait a bit for context to be ready
   useEffect(() => {
-    const setup = async () => {
-      await initDB();
+    const timer = setTimeout(() => {
       setDbReady(true);
-    };
-    setup();
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -85,20 +86,35 @@ export default function HomeScreen() {
   useEffect(() => {
     if (!dbReady) return;
     const loadTasrif = async () => {
-      setLoadingTasrif(true);
-      const key = `${selectedEntry.id}-${activeTab}`;
+      try {
+        setLoadingTasrif(true);
+        const key = `${selectedEntry.id}-${activeTab}`;
 
-      let data = await getTasrifCache(key); // 1. Cek Cache
+        let data = await getTasrifCache(key); // 1. Cek Cache
 
-      if (!data) {
-        const engine = getTasrifEngine(activeTab); // 2. Ambil fungsi yang benar
-        if (engine) {
-          data = engine(selectedEntry); // 3. Hitung
-          if (data) await saveTasrifCache(key, data); // 4. Simpan ke Cache
+        if (!data) {
+          const engine = getTasrifEngine(activeTab); // 2. Ambil fungsi yang benar
+          if (engine) {
+            try {
+              data = engine(selectedEntry); // 3. Hitung
+              if (data) await saveTasrifCache(key, data); // 4. Simpan ke Cache
+            } catch (error) {
+              console.error(`Error computing tasrif for tab ${activeTab}:`, error);
+              // Set fallback data
+              data = null;
+            }
+          } else {
+            console.warn(`No engine found for tab: ${activeTab}`);
+            data = null;
+          }
         }
+        setTasrifData(data);
+        setLoadingTasrif(false);
+      } catch (error) {
+        console.error("Error loading tasrif:", error);
+        setTasrifData(null);
+        setLoadingTasrif(false);
       }
-      setTasrifData(data);
-      setLoadingTasrif(false);
     };
     loadTasrif();
   }, [selectedEntry, activeTab, dbReady]);
@@ -189,6 +205,11 @@ export default function HomeScreen() {
               <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20}}>
                 <ActivityIndicator color="#10b981" />
                 <Text style={{color: tc.subText, marginTop: 8}}>Memuat...</Text>
+              </View>
+            ) : tasrifData === null ? (
+              <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 20, paddingHorizontal: 16}}>
+                <Feather name="alert-circle" size={32} color={tc.subText} />
+                <Text style={{color: tc.subText, marginTop: 12, textAlign: 'center', fontSize: 12}}>Gagal memuat data untuk tab ini</Text>
               </View>
             ) : (
               <>

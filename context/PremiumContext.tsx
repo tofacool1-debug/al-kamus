@@ -17,18 +17,30 @@ export function PremiumProvider({ children }: { children: ReactNode }) {
   // 1. PAS BUKA APP: CEK DI IDB APA UDAH PREMIUM
   useEffect(() => {
     const checkPremium = async () => {
-      const savedPremium = await dbSettings.get<boolean>("isPremium_v2");
-      setIsPremium(savedPremium === true);
-      setLoading(false);
+      try {
+        const savedPremium = await dbSettings.get<boolean>("isPremium_v2");
+        setIsPremium(savedPremium === true);
+      } catch (error) {
+        console.warn("Error checking premium status:", error);
+        // Default to false if there's an error
+        setIsPremium(false);
+      } finally {
+        setLoading(false);
+      }
     };
     checkPremium();
   }, []);
 
   // 2. FUNGSI BUAT BUKA PREMIUM
   const unlockPremium = async () => {
-    await dbSettings.set("isPremium_v2", true); // Simpan ke IDB
-    setIsPremium(true);
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    try {
+      await dbSettings.set("isPremium_v2", true); // Simpan ke IDB
+      setIsPremium(true);
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    } catch (error) {
+      console.error("Error unlocking premium:", error);
+      throw error; // Re-throw so caller can handle
+    }
   };
 
   return (
