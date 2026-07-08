@@ -1,0 +1,48 @@
+{
+  "name": "react-example",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eas:configure": "eas configure",
+    "eas:build:android": "eas build -p android",
+    "eas:update": "eas update --auto"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^15.0.0",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "expo": "~57.0.4",
+    "expo-build-properties": "~57.0.3",
+    "expo-clipboard": "~57.0.0",
+    "expo-constants": "~57.0.0",
+    "expo-document-picker": "~57.0.0",
+    "expo-file-system": "~57.0.0",
+    "expo-font": "~57.0.0",
+    "expo-haptics": "~57.0.0",
+    "expo-linking": "~57.0.2",
+    "expo-router": "~57.0.4",
+    "expo-sharing": "~57.0.3",
+    "expo-splash-screen": "~57.0.2",
+    "expo-status-bar": "~57.0.0",
+    "expo-updates": "~57.0.6",
+    "fake-indexeddb": "~6.2.5",
+    "idb": "^8.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.0",
+    "react-native-keyboard-controller": "1.21.9",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "4.25.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.2.4",
+    "babel-plugin-module-resolver": "^5.0.3",
+    "babel-preset-expo": "^57.0.1",
+    "typescript": "~6.0.3"
+  }
+}
