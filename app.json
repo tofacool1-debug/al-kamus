@@ -7,13 +7,22 @@
     "icon": "./assets/images/icon.png",
     "scheme": "shorof-digital",
     "userInterfaceStyle": "dark",
+
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/fonts/*"
+    ],
+
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.shorof.digital"
     },
     "android": {
       "package": "com.shorof.digital",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "versionCode": 1,
+      "splitApk": true,
+      "enableProguardInReleaseBuilds": false
     },
     "web": {
       "favicon": "./assets/images/icon.png"
